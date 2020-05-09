@@ -6,6 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name="Products")
@@ -16,18 +23,28 @@ public class Product {
 	@Column(name = "product_id")
 	private Long id;
 	
+	@NotNull
+	@Size(max = 100, message = "Product name should not exceed length of 100 characters.")
 	@Column(name = "product_name")
 	private String productName;
 	
+	@NotNull
+	@Size(max=400, message="Product description should not exceed length of 400 characters.")
 	@Column(name = "product_description")
 	private String productDescription;
 	
+	@NotNull(message = "Brand field should not be null.")
+	@NotBlank(message = "Brand field should not be blank.")
 	@Column(name = "product_brand")
 	private String brand;
 	
+	@NotNull
+	//@Pattern(regexp = "@\\d{4}", message = "Please provide model year in format YYYY.")
 	@Column(name = "model_year")
 	private String modelYear;
 	
+	@NotNull
+	//@Pattern(regexp = "@\"^\\d$\"", message = "Please provide valid value for List Price.")
 	@Column(name = "list_price")
 	private double listPrice;
 	

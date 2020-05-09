@@ -3,6 +3,8 @@ package com.contentserv.product.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +28,10 @@ public class ProductController {
 
 	@GetMapping("/products/{id}")
 	public Product getProduct(@PathVariable Long id) {
-		return productService.getProduct(id);
+		Product retrievedProduct = productService.getProduct(id);
+		if(retrievedProduct == null)
+			throw new ProductNotFoundException("Product not found ---->" + id);
+		return retrievedProduct;
 	}
 	
 	@GetMapping("/products")
@@ -35,14 +40,14 @@ public class ProductController {
 	}
 	
 	@PostMapping("/products")
-	public ResponseEntity<Void> createProduct(@RequestBody Product product){
+	public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product){
 		Product savedProduct = productService.createProduct(product);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedProduct.getId()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
 	@PutMapping("/products/{id}")
-	public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
+	public Product updateProduct(@PathVariable Long id,@Valid @RequestBody Product product) {
 		Product tempProduct = productService.updateProduct(id, product);
 		if(tempProduct == null) {
 			throw new ProductNotFoundException("Product not found ---->" + id);
