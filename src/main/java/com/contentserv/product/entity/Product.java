@@ -81,5 +81,11 @@ public class Product {
 		this.listPrice = listPrice;
 	}
 	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productName=" + productName + ", productDescription=" + productDescription
+				+ ", brand=" + brand + ", modelYear=" + modelYear + ", listPrice=" + listPrice + "]";
+	}
+	
 	
 }

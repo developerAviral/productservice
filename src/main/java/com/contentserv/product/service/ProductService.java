@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.contentserv.product.entity.Product;
+import com.contentserv.product.exception.ProductNotFoundException;
 import com.contentserv.product.repository.ProductRepository;
 
 @Service
@@ -23,7 +24,12 @@ public class ProductService {
 	
 	/* Return product of given id*/
 	public Product getProduct(Long id) {
-		return (repository.findById(id)).orElse(null);
+		Optional<Product> product = repository.findById(id);
+		
+		if(!product.isPresent())
+			throw new ProductNotFoundException("Product not found ---->" + id);
+		
+		return product.get();
 	}
 	
 	/* Insert new product */
