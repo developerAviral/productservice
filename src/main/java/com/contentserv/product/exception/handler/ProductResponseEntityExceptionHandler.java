@@ -13,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.contentserv.product.error.ErrorDetails;
+import com.contentserv.product.exception.MethodNotImplementedException;
 import com.contentserv.product.exception.ProductNotFoundException;
 
 @ControllerAdvice
@@ -30,6 +31,13 @@ public class ProductResponseEntityExceptionHandler extends ResponseEntityExcepti
 	
 	@ExceptionHandler(ProductNotFoundException.class)
 	public final ResponseEntity<ErrorDetails> handleProductNotFoundException(ProductNotFoundException ex 
+																			, WebRequest request){
+		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(MethodNotImplementedException.class)
+	public final ResponseEntity<ErrorDetails> handleMethodNotImplementedException(MethodNotImplementedException ex 
 																			, WebRequest request){
 		ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
