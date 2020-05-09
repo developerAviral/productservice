@@ -1,6 +1,5 @@
 package com.contentserv.product.controller;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -95,7 +94,7 @@ public class ProductControllerTest {
 	public void updateProducts() throws Exception{
 		Product mockProduct = new Product(1L, "AC", "1.5 ton cooling ac", "sony", "2018", 20004.93);
 		Mockito.when(service.updateProduct(Mockito.anyLong(), Mockito.any(Product.class) )).thenReturn(mockProduct);	
-		Mockito.when(repository.save(mockProduct)).thenReturn(mockProduct);		
+		
 		
 		mockMvc.perform(MockMvcRequestBuilders.put("/products/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON)
