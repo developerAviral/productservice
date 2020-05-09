@@ -40,4 +40,5 @@ public class QualityIndicatorsController {
 				.allow(HttpMethod.GET, HttpMethod.OPTIONS)
 				.build();
 	}
+	
 }

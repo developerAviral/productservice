@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "cd92b0c5-874a-49b3-8b38-e9935e2e23ed",
+		"name": "ProductQuality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAudit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/products/quality/audit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"quality",
+						"audit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHttpTrace",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/products/quality/httpTrace",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"quality",
+						"httpTrace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMetrics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/products/quality/metrics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"quality",
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetThreadDumps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/products/quality/threadDumps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"products",
+						"quality",
+						"threadDumps"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -20,7 +20,7 @@ import com.contentserv.product.service.ProductService;
 
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
-class ProductserviceApplicationTests {
+class ProductServiceApplicationTests {
 
 	@Autowired
 	private ProductService productService;

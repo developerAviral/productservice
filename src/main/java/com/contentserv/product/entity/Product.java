@@ -44,6 +44,38 @@ public class Product {
 	@Column(name = "list_price")
 	private double listPrice;
 	
+	public Product() {}
+	
+	public Product(
+			@NotNull @Size(max = 100, message = "Product name should not exceed length of 100 characters.") String productName,
+			@NotNull @Size(max = 400, message = "Product description should not exceed length of 400 characters.") String productDescription,
+			@NotNull(message = "Brand field should not be null.") @NotBlank(message = "Brand field should not be blank.") String brand,
+			@NotNull String modelYear, @NotNull double listPrice) {
+		super();
+		//this.id = id;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.brand = brand;
+		this.modelYear = modelYear;
+		this.listPrice = listPrice;
+	}
+	
+	
+	
+	public Product(Long id,
+			@NotNull @Size(max = 100, message = "Product name should not exceed length of 100 characters.") String productName,
+			@NotNull @Size(max = 400, message = "Product description should not exceed length of 400 characters.") String productDescription,
+			@NotNull(message = "Brand field should not be null.") @NotBlank(message = "Brand field should not be blank.") String brand,
+			@NotNull String modelYear, @NotNull double listPrice) {
+		super();
+		this.id = id;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.brand = brand;
+		this.modelYear = modelYear;
+		this.listPrice = listPrice;
+	}
+
 	public Long getId() {
 		return id;
 	}

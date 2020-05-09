@@ -1,7 +1,9 @@
 package com.contentserv.product.controller;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -59,15 +61,18 @@ public class ProductController {
 	}
 	
 	@DeleteMapping("/products/{id}")
-	public void deleteProduct(@PathVariable Long id) {
+	public Map<String, Boolean> deleteProduct(@PathVariable Long id) {
 		Product tempProduct = productService.deleteProduct(id);
 		if(tempProduct == null)
 			throw new ProductNotFoundException("Product not found ---->" + id);
 		
+		Map<String, Boolean> response = new HashMap<>();
+	        response.put("deleted", Boolean.TRUE);
+	        return response;
 	}
 	
 	@RequestMapping(value="/" , method = RequestMethod.OPTIONS)
-	public ResponseEntity<Object> getQuaityIndicatorsOptions() {
+	public ResponseEntity<Object> getProductServiceOptions() {
 		return ResponseEntity
 				.ok()
 				.allow(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.OPTIONS)
